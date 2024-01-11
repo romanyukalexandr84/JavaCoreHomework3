@@ -3,9 +3,12 @@ package org.example;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     static ArrayList<Employee> employees = new ArrayList<>();
+    static ArrayList<Student> students = new ArrayList<>();
 
     public static void changeSalary(ArrayList<Employee> arr) {
         for (Employee item : arr) {
@@ -72,6 +75,30 @@ public class Main {
         for (Employee item : employees) {
             System.out.println(item.toString());
         }
+        System.out.println();
 
+        students.add(new Student("Иван", Arrays.asList(5.3, 4.5, 3.8), "Информатика"));
+        students.add(new Student("Петр", Arrays.asList(4.3, 4.0, 2.8), "Математика"));
+        students.add(new Student("Михаил", Arrays.asList(5.3, 5.5, 5.8), "Информатика"));
+        students.add(new Student("Алексей", Arrays.asList(5.3, 5.5, 5.8), "Дизайн"));
+        students.add(new Student("Степан", Arrays.asList(5.3, 4.5, 1.8), "Информатика"));
+        students.add(new Student("Григорий", Arrays.asList(5.3, 3.5, 3.2), "Маркетинг"));
+        students.add(new Student("Александр", Arrays.asList(4.4, 5.0, 5.0), "Информатика"));
+        students.add(new Student("Сергей", Arrays.asList(4.2, 4.0, 5.8), "Экономика"));
+        students.add(new Student("Тимофей", Arrays.asList(5.3, 4.5, 4.9), "Информатика"));
+        students.add(new Student("Артем", Arrays.asList(3.3, 3.5, 3.8), "Юриспруденция"));
+        students.add(new Student("Денис", Arrays.asList(5.6, 5.5, 5.8), "Информатика"));
+        students.add(new Student("Николай", Arrays.asList(4.3, 4.9, 4.9), "Информатика"));
+
+        List<String> bestStudents = students.stream()
+                .sorted()
+                .filter(e -> e.getAverageGrade() > 4.5 && e.getSpecialty().equals("Информатика"))
+                .limit(5)
+                .map(e -> {
+                    return e.getName() + " " + String.format("ср.балл = %.2f", e.getAverageGrade());
+                })
+                .toList();
+
+        System.out.println(bestStudents);
     }
 }

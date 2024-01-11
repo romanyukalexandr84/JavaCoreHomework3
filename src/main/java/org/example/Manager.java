@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Manager extends Employee{
+public class Manager extends Employee {
 
     public Manager(String fio, String position, int phone, int salary, int age, Date birthdate) {
         super(fio, position, phone, salary, age, birthdate);
